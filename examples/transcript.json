@@ -1,0 +1,22 @@
+{
+  "segments": [
+    {
+      "start": 1,
+      "end": 3,
+      "text": "Good edits start with a clear idea.",
+      "notes": "Open on the speaker."
+    },
+    {
+      "start": 4.2,
+      "end": 7,
+      "text": "Cut the waiting. Keep the personality.",
+      "notes": "Show a before-and-after timeline."
+    },
+    {
+      "start": 8,
+      "end": 11,
+      "text": "Review every decision before you export.",
+      "notes": "End on the review screen."
+    }
+  ]
+}

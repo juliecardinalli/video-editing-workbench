@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Video Editing Workbench</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Video Editing Workbench home"
+        ><span class="mark">/ /</span> Video Editing Workbench</a
+      >
+      <span class="local-pill"
+        ><span class="dot"></span> LOCAL · PRIVATE BY DEFAULT</span
+      >
+    </header>
+    <main>
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">FROM RAW TAKE TO ROUGH CUT</p>
+          <h1>Keep the good parts.</h1>
+          <p class="intro">
+            A little less dead air. A lot more say in the edit.
+          </p>
+        </div>
+        <div class="top-actions">
+          <button id="undo" disabled>Undo</button
+          ><button id="save" class="primary">Save decisions</button>
+        </div>
+      </div>
+      <div id="status" role="status" aria-live="polite">
+        Loading your local project…
+      </div>
+      <div id="demo-notice" class="notice" hidden>
+        SYNTHETIC DEMO · This clip contains tones, not speech. The script is
+        illustrative. No personal footage is included.
+      </div>
+      <div class="workspace">
+        <section class="preview card" aria-labelledby="preview-heading">
+          <div class="section-heading">
+            <div>
+              <span class="step">01</span>
+              <h2 id="preview-heading">The preview</h2>
+            </div>
+            <span class="small-tag">SOURCE VIDEO</span>
+          </div>
+          <div class="video-frame">
+            <video
+              id="video"
+              controls
+              preload="metadata"
+              playsinline
+              src="/media"
+            ></video>
+          </div>
+          <div class="preview-controls">
+            <label
+              ><input id="preview-cuts" type="checkbox" checked /> Skip selected
+              cuts in playback</label
+            ><span id="clock">0:00.00</span>
+          </div>
+          <p class="helper">
+            The preview skips cuts while playing. The exported MP4 is the final
+            timing check.
+          </p>
+          <div class="stats">
+            <div><span>Original</span><strong id="original">—</strong></div>
+            <div><span>After cuts</span><strong id="edited">—</strong></div>
+            <div><span>Removed</span><strong id="removed">—</strong></div>
+          </div>
+        </section>
+        <section class="script card" aria-labelledby="script-heading">
+          <div class="section-heading">
+            <div>
+              <span class="step">02</span>
+              <h2 id="script-heading">Edit by script</h2>
+            </div>
+            <button id="import-button" class="text-button">
+              Import transcript ↗</button
+            ><input
+              id="transcript-file"
+              type="file"
+              accept=".json,application/json"
+              hidden
+            />
+          </div>
+          <p class="helper script-intro">
+            Click a timestamp to listen. Cut a line to remove its footage. Add
+            visual notes for your next pass.
+          </p>
+          <div id="lines" class="lines"></div>
+          <div class="script-footer">
+            <span
+              >Text corrections change the script, not the recorded audio.</span
+            ><button id="download-script">Download script ↓</button>
+          </div>
+        </section>
+      </div>
+      <section class="timeline card" aria-labelledby="timeline-heading">
+        <div class="section-heading">
+          <div>
+            <span class="step">03</span>
+            <h2 id="timeline-heading">Review the quiet parts</h2>
+          </div>
+          <div class="timeline-actions">
+            <button id="edges">Select clip edges</button
+            ><button id="restore">Restore all cuts</button>
+          </div>
+        </div>
+        <div class="legend">
+          <span><i class="keep-color"></i>Kept footage</span
+          ><span><i class="suggest-color"></i>Suggested cut</span
+          ><span><i class="cut-color"></i>Selected cut</span
+          ><span class="timeline-note">Source timeline · click to seek</span>
+        </div>
+        <canvas
+          id="timeline"
+          width="1200"
+          height="72"
+          role="img"
+          aria-label="Source timeline showing kept footage, suggested cuts and selected cuts. Use timestamps below to seek."
+        ></canvas>
+        <div id="suggestions" class="suggestions"></div>
+        <p class="helper">
+          Quiet does not always mean unnecessary. Internal pauses stay
+          unselected until you choose them; short handles protect word
+          boundaries.
+        </p>
+      </section>
+      <section class="export-panel">
+        <div>
+          <p class="eyebrow">YOU MAKE THE FINAL CALL</p>
+          <h2>Review here. Render locally.</h2>
+          <p>
+            Save decisions to the project, then use the CLI to preview the
+            export plan. Add <code>--execute</code> only when ready.
+          </p>
+        </div>
+        <button id="download-edl">Download edit decisions ↓</button>
+      </section>
+      <footer>
+        <span>Built by Julie Cardinalli</span
+        ><span>Python + FFmpeg + a browser. No uploads. No API key.</span>
+      </footer>
+    </main>
+  </body>
+</html>
